@@ -1,0 +1,517 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+  width: 500%;
+  overflow: scroll;
+}
+
+$primary-color: white;
+$secondary-color: black;
+
+@function random_range($min, $max) {
+  $rand: random();
+  $random_range: $min + floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-items {
+  flex: 1;
+}
+
+.inline {
+  display: inline;
+}
+
+/* tags */
+.css {
+  background-color: rgb(255, 255, 255);
+}
+.html {
+  background-color: rgb(223, 173, 230);
+}
+.js {
+  background-color: aquamarine;
+}
+.jquery {
+  background-color: rgb(161, 211, 255);
+}
+.node {
+  background-color: beige;
+}
+.sass {
+  background-color: blanchedalmond;
+}
+
+#main-nav {
+  position: fixed;
+  right: -100px;
+  top: 30vh;
+  z-index: 10;
+  &.appear {
+    animation: bounceIn 1s 1s ease forwards;
+  }
+  div {
+    position: relative;
+    left: 45px;
+    transform: rotate(-90deg);
+    margin: 5px 0;
+    text-align: center;
+    background: linear-gradient(to top, rgb(39, 39, 39), red);
+    padding: 0 5px 50px;
+    border-top: 3px solid rgb(255, 62, 62);
+    transition: left 0.5s ease;
+    &.current {
+      left: 25px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-family: "Piazzolla", serif;
+    }
+  }
+}
+
+header {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+  background: black;
+  color: white;
+  .black-specs-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 35vh;
+    z-index: 3;
+    .black-spec {
+      position: absolute;
+      top: 0;
+      background: radial-gradient(black, rgba(0, 0, 0, 0));
+      border-radius: 50%;
+      box-shadow: 0 0 8px black;
+    }
+  }
+
+  nav {
+    margin-right: 10vw;
+    font-family: "Piazzolla", serif;
+    > div {
+      position: relative;
+      top: -1000px;
+      transition: top 1.5s ease;
+      &.move {
+        top: 0;
+      }
+      margin: 40px 0;
+      &.widthAndBg {
+        width: 80vw;
+        background: linear-gradient(
+          to right,
+          rgba(128, 128, 128, 0),
+          rgba(255, 255, 255, 0.651)
+        );
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.4rem;
+        padding-right: 10px;
+        transition: color 0.5s ease;
+        &.color {
+          color: black;
+        }
+        &:hover {
+          color: rgb(255, 255, 255);
+          text-shadow: 0 0 5px black;
+        }
+      }
+    }
+  }
+}
+
+#header-txt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4rem;
+
+  &::after {
+    content: "|";
+    animation: flashInOut 0.8s linear infinite;
+  }
+}
+
+#header-txt.stopAnimation {
+  font-size: 2.5rem;
+  &::after {
+    content: "";
+  }
+}
+
+/* all sections */
+section {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.6rem;
+}
+
+.title-div {
+  margin-top: 10vh;
+}
+
+/* projects section */
+
+#projects {
+  position: absolute;
+  left: 100vw;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: url("../images/pexels-konevi-3789871.jpg") center center/cover;
+  h2 {
+    text-align: center;
+    color: rgb(44, 44, 44);
+  }
+  > .flex-container {
+    font-size: 1.2rem;
+    max-width: 1500px;
+    height: 80vh;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .proj-container {
+    background-color: rgba(255, 255, 255, 0.548);
+    margin: 20px;
+    min-width: 500px;
+    max-height: 500px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: -10px 20px 20px rgba(0, 0, 0, 0.356);
+    opacity: 0;
+    transition: all 1s ease;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.705);
+      box-shadow: -10px 25px 25px rgba(0, 0, 0, 0.356);
+      transform: scale(1.05);
+    }
+    &.appear {
+      opacity: 1;
+    }
+    > .flex-container {
+      > .flex-items {
+        padding: 10px;
+      }
+    }
+    img {
+      height: auto;
+      width: 100%;
+      border: solid thin black;
+    }
+    h3 {
+      text-align: center;
+    }
+    h4 {
+      color: rgb(44, 44, 44);
+      font-weight: 600;
+    }
+    p {
+      font-size: 1rem;
+    }
+    ul {
+      li {
+        font-size: 0.8rem;
+        display: inline;
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        font-weight: 600;
+      }
+    }
+    a {
+      font-size: 1rem;
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+/* skills section */
+
+#skills {
+  position: absolute;
+  left: 200vw;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../images/pexels-nick-bondarev-4534200.jpg") center
+      center/cover;
+    z-index: -2;
+    filter: brightness(0.5);
+  }
+
+  color: white;
+  h2 {
+    text-align: center;
+  }
+  .flex-container {
+    height: 80vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .flex-items {
+      text-align: center;
+      i {
+        position: relative;
+        font-size: 6rem;
+      }
+      #html-i {
+        animation: htmlDance 0.5s infinite;
+      }
+      #css-i {
+        animation: cssDance 1s infinite;
+      }
+      #js-i {
+        animation: jsDance 1.2s infinite;
+      }
+      #git-i {
+        animation: gitDance 1.5s infinite;
+      }
+    }
+  }
+}
+
+/* about me section */
+
+#aboutme {
+  position: absolute;
+  left: 300vw;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("../images/pexels-pixabay-206660.jpg") center center/cover;
+  h2 {
+    text-align: center;
+  }
+}
+
+/* contact section */
+
+#contact {
+  position: absolute;
+  left: 400vw;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: url("../images/pexels-elijah-o'donnell-4173624.jpg") center
+      center/cover;
+    filter: gradient(50%);
+    z-index: -2;
+  }
+  h2 {
+    text-align: center;
+    color: white;
+  }
+}
+
+/* about section */
+
+#aboutme {
+  .text-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    .flex-items {
+      padding: 10px;
+      margin: 10px;
+      background-color: rgba(255, 255, 255, 0.548);
+      border-radius: 20px;
+      h4 {
+        text-align: center;
+      }
+      p {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+/* contact section */
+
+#contact {
+  .text-container {
+    background-color: rgba(255, 255, 255, 0.548);
+    max-width: 1200px;
+    margin: auto;
+    border-radius: 20px;
+    padding: 10px;
+    p {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: rgb(22, 22, 22);
+    }
+    .flex-container {
+      text-align: center;
+      .flex-items {
+        padding: 50px;
+        a {
+          text-decoration: none;
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    transform: translateX(0);
+  }
+  60% {
+    transform: translateX(-110px);
+  }
+  to {
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes flashInOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.1% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes htmlDance {
+  from {
+    transform: scale(1.1, 0.9);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: scale(1.1, 0.9);
+  }
+}
+@keyframes cssDance {
+  from {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  to {
+    transform: rotate(-15deg);
+  }
+}
+@keyframes jsDance {
+  from {
+    transform: scale(1.1, 0.9);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  to {
+    transform: scale(1.1, 0.9);
+  }
+}
+@keyframes gitDance {
+  from {
+    transform: scale(1.1, 0.9);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  to {
+    transform: scale(1.1, 0.9);
+  }
+}
+
+$randomTop: random(20);
+$randomTranform: random(30);
+@keyframes fallingSpecs {
+  from {
+    top: 0;
+    transform: translateX(0);
+  }
+  25% {
+    top: $randomTop + 15%;
+    transform: translateX($randomTranform - 15px);
+  }
+  50% {
+    top: $randomTop + 40%;
+    transform: translateX($randomTranform - 15px);
+  }
+  75% {
+    top: $randomTop + 65%;
+    transform: translateX($randomTranform - 15px);
+  }
+
+  to {
+    top: 100%;
+    transform: translateX(0);
+  }
+}
+
+$specs: 80;
+
+@for $i from 1 through $specs {
+  $randomSize: random(7) + 1px;
+  $randomDelay: random(20) + s;
+  $randomDur: random(5) + 10s;
+  .black-spec:nth-child(#{$i}) {
+    width: $randomSize;
+    height: $randomSize;
+    left: random(100) + 0.00001%;
+    animation: fallingSpecs $randomDur $randomDelay linear infinite;
+  }
+}
